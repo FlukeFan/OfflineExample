@@ -19,8 +19,9 @@ Some example NAnt scenarios:
     Command                                 Description
    -----------------------------------------------------
 
-    nant                                    Perform a debug build, db build, test
+    nant                                    Build and test everything
     nant clean                              Clean the debug build
-    nant test                               Debug build and test
+    nant test                               Run the tests (c# and javascript)
+    nant testJs                             Run the javascript jasmine test suite only
     nant exportNAntSchema                   Create the NAnt schema (for intellisense in the build file)
 
