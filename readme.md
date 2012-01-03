@@ -1,6 +1,6 @@
 
-OfflineExample
-==============
+Offline Example
+===============
 
 Prerequisites:
     .Net Framework 4.0
@@ -16,11 +16,11 @@ To build:
 
 Some example NAnt scenarios:
 
-> Command                                 Description
-> -------                                 -----------
+    Command                                 Description
+   -----------------------------------------------------
 
-> nant                                    Perform a debug build, db build, test
-> nant clean                              Clean the debug build
-> nant test                               Debug build and test
-> nant exportNAntSchema                   Create the NAnt schema (for intellisense in the build file)
+    nant                                    Perform a debug build, db build, test
+    nant clean                              Clean the debug build
+    nant test                               Debug build and test
+    nant exportNAntSchema                   Create the NAnt schema (for intellisense in the build file)
 
