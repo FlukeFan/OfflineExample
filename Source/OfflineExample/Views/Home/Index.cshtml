@@ -1,0 +1,38 @@
+﻿@model Index
+<!DOCTYPE html>
+<html manifest="@(Url.Action<OfflineController>(c => c.Manifest()))">
+<head>
+    <title>Offline Example</title>
+    <link rel="shortcut icon" href="@Url.FileContent("~/favicon.ico")" />
+    <link rel="stylesheet" href="@Url.FileContent("~/Content/jquery.mobile-1.0.min.css")" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="ui-mobile-viewport" style="height:100%;">
+
+    <div class="ui-body-c ui-page-active ui-content" style="position:absolute;height:100%;width:100%">
+        <h2>Offline Example</h2>
+
+        <p>
+            This is an example offline application:  
+            <a href="@(Url.Action<OfflineController>(c => c.Index()))" data-ajax="false">
+                @(Url.Action<OfflineController>(c => c.Index()))
+            </a>
+        </p>
+
+        <p>
+            Use the following URL to access the application from a mobile device:
+            <a href="http://@Model.MachineName@(Url.Action<OfflineController>(c => c.Index()))">
+                http://@Model.MachineName@(Url.Action<OfflineController>(c => c.Index()))
+            </a>
+        </p>
+
+        <p>
+            If you're using Chrome, you can manage the cache using:
+            <a href="chrome://appcache-internals/" rel="external">
+                chrome://appcache-internals/
+            </a>
+        </p>
+    </div>
+
+</body>
+</html>

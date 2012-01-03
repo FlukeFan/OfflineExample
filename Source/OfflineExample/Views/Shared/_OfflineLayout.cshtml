@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html manifest="@(Url.Action<OfflineController>(c => c.Manifest()))">
+<head>
+    <title>All</title>
+    <link rel="shortcut icon" href="@Url.FileContent("~/favicon.ico")" />
+
+    <link rel="stylesheet" href="@Url.FileContent("~/Content/jquery.mobile-1.0.min.css")" />
+
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery-1.7.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery.mobile.global.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery.mobile-1.0.min.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/OfflineGlobal.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Dto/CmdFetchFuture.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/StorageService.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Index.js")"></script>
+    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Months.js")"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript">
+
+        var onlinePath = '@Url.FileContent("~/online.txt")';
+        var indexPath = '@(Url.Action<OfflineController>(c => c.Index()))';
+        var isOnline;
+
+        function doLoad() {
+
+            // replace the current document if it isn't the appropriate start page
+            if (window.location.pathname != indexPath)
+                window.location.replace(indexPath);
+
+            new OfflineGlobal({
+                onlinePath: onlinePath,
+            }).init();
+
+        }
+
+        $(document).bind("pagebeforeload", function (e, data) {
+            var dataElement = event.srcElement;
+
+            if (!dataElement.tagName)
+                return; // it wasn't an HTML element
+
+            while (dataElement.tagName != 'LI')
+                dataElement = dataElement.parentNode;
+
+            window.params = dataElement.getAttribute("data-params");
+        });
+
+    </script>
+</head>
+<body>
+
+    @RenderBody()
+
+    <script type="text/javascript">
+        $(document).ready(doLoad);
+    </script>
+
+</body>
+</html>

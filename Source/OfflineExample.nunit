@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Domain.Test\bin\Debug\Domain.Test.dll" />
+    <assembly path="OfflineExample.Test\bin\Debug\OfflineExample.Test.dll" />
+  </Config>
+
+</NUnitProject>

@@ -1,0 +1,1 @@
+﻿<%@ Application Inherits="OfflineExample.Global" Language="C#" %>

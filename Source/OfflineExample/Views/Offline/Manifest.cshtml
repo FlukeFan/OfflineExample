@@ -1,0 +1,21 @@
+@model Manifest
+CACHE MANIFEST
+
+# version @Model.LastModified
+
+
+CACHE:
+
+@foreach(var item in Manifest.Cache)
+    { @item.ToUrl(Url) }
+
+
+NETWORK:
+
+@Url.FileContent("~/online.txt")
+
+
+FALLBACK:
+
+http://@Model.RootUrl @(Url.Action<OfflineController>(c => c.Index()))
+@Url.FileContent("~/") @(Url.Action<OfflineController>(c => c.Index()))

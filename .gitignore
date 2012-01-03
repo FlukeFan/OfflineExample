@@ -1,0 +1,10 @@
+
+Source/Artefacts
+Source/*/bin
+Source/*/obj
+*.csproj.user
+*.suo
+
+Source/OfflineExample.VisualState.xml
+Source/OfflineExample.suo
+Source/TestResult.xml

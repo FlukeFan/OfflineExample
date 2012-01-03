@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<project name="OfflineExample"
+         default="default"
+         basedir="."
+         xsi:schemaLocation="http://OfflineExample/nant.xsd ..\Tools\nant\schema\nant.xsd"
+         xmlns="http://OfflineExample/nant.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <property name="nant.settings.currentframework" value="net-4.0" />
+  <property name="project.sourceDir" value="${project::get-base-directory()}" />
+  <property name="project.sdksDir" value="${project.sourceDir}\..\SDKs" />
+  <property name="project.version" value="0.1.0.0" />
+  <property name="ncover.canUse" value="true" />
+
+  <loadtasks assembly="..\SDKs\NCoverExplorer\Extras\NCoverExplorer.NAntTasks.dll" />
+
+  <call target="debug" />
+
+  <echo message="Using '${nant.settings.currentframework}' framework on '${platform::get-name()}' platform." />
+
+
+  <target name="default">
+    <call target="test" />
+    <call target="CreateIISFolder" />
+  </target>
+
+  <target name="release" description="specify a release build">
+    <property name="SolutionConfiguration" value="Release" />
+    <property name="BinFolder" value="bin\Release" />
+  </target>
+
+
+  <target name="debug" description="specify a debug build">
+    <property name="SolutionConfiguration" value="Debug" />
+    <property name="BinFolder" value="bin\Debug" />
+  </target>
+
+
+  <target name="clean" description="remove all generated files">
+    <msbuild project="OfflineExample.sln" target="Clean">
+      <property name="Configuration" value="${SolutionConfiguration}" />
+    </msbuild>
+    <delete includeemptydirs="true">
+      <fileset>
+        <include name="**/bin/**" />
+        <include name="**/obj/**" />
+      </fileset>
+    </delete>
+    <delete dir="Artefacts" />
+  </target>
+
+
+  <target name="build" description="compiles the source code">
+
+    <mkdir dir="Artefacts" />
+
+    <msbuild project="OfflineExample.sln">
+      <property name="Configuration" value="${SolutionConfiguration}" />
+    </msbuild>
+
+  </target>
+
+
+  <target name="test" description="run the tests" depends="build">
+    <call target="test-ncover" if="${ncover.canUse}" />
+    <call target="test-nocover" if="${not ncover.canUse}" />
+    <call target="testJs" />
+  </target>
+
+
+  <target name="test-nocover">
+    <exec program="${project.sdksDir}\NUnit\bin\nunit-console-x86.exe"
+          commandline="/framework=4.0.30319 ${project.sourceDir}\OfflineExample.nunit /config=${SolutionConfiguration}" />
+  </target>
+  
+  <target name="test-ncover">
+
+    <setenv name="COMPLUS_ProfAPI_ProfilerCompatibilitySetting" value="EnableV2Profiler" />
+
+    <ncover program="${project.sdksDir}\NCover\NCover.Console.exe"
+            commandLineExe="${project.sdksDir}\NUnit\bin\nunit-console-x86.exe"
+            commandLineArgs="/framework=4.0.30319 ${project.sourceDir}\OfflineExample.nunit /config=${SolutionConfiguration}"
+            coverageFile="${project.sourceDir}\Artefacts\Coverage.xml"
+            logFile="${project.sourceDir}\Artefacts\Coverage.log"
+            registerProfiler="true">
+    </ncover>
+
+    <ncoverexplorer program="${project.sdksDir}\NCoverExplorer\NCoverExplorer.Console.exe"
+                    minimumCoverage="90"
+                    reportType="ModuleClassFunctionSummary"
+                    xmlReportName="${project.sourceDir}\Artefacts\CoverageReport.xml"
+                    mergeFileName="${project.sourceDir}\Artefacts\CombinedCoverage.xml"
+                    failCombinedMinimum="True"
+                    failMinimum="True">
+
+      <exclusions>
+        <exclusion type="Namespace" pattern="Domain.Util" />
+        <exclusion type="Class" pattern="Domain.Test.Builder*" />
+        <exclusion type="Class" pattern="OfflineExample.Global" />
+        <exclusion type="Class" pattern="OfflineExample.Util.HostUtil" />
+        <exclusion type="Class" pattern="OfflineExample.Util.ResponseUtil" />
+        <exclusion type="Class" pattern="OfflineExample.Util.RequestUtil" />
+        <exclusion type="Class" pattern="OfflineExample.Util.UrlExtensions" />
+        <exclusion type="Class" pattern="OfflineExample.Test.ViewTestBase" />
+      </exclusions>
+
+      <fileset>
+        <include name="${project.sourceDir}\Artefacts\Coverage.xml"/>
+      </fileset>
+
+    </ncoverexplorer>
+
+  </target>
+
+
+  <target name="testJs">
+    <exec program="${project.sdksDir}\node\node.exe"
+          commandline="OfflineExample\Scripts\spec\consoleRunner.js" />
+  </target>
+
+
+  <target name="CreateIISFolder">
+    <mkiisdir vdirname="OfflineExample" dirpath="OfflineExample" apppoolid="ASP.NET v4.0" />
+  </target>
+
+
+  <target name="exportNAntSchema" description="updates the nant schema definitions">
+    <nantschema output="..\Tools\nant\schema\nant.xsd"
+                target-ns="http://OfflineExample/nant.xsd" />
+  </target>
+
+
+</project>

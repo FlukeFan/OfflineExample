@@ -1,0 +1,1 @@
+start "OfflineExampleTests" ..\SDKs\NUnit\bin\nunit.exe OfflineExample.nunit

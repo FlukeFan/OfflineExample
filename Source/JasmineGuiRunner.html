@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>OfflineExample JS Test Suite</title>
+        <link rel="shortcut icon" type="image/png" href="../SDKs/jasmine/jasmine_favicon.png" />
+        <link type="text/css" rel="Stylesheet" href="../SDKs/jasmine/jasmine.css" />
+
+        <script type="text/javascript" src="../SDKs/jasmine/jasmine.js"></script>
+        <script type="text/javascript" src="../SDKs/jasmine/jasmine-html.js"></script>
+
+        <script type="text/javascript">
+            function load(f) {
+                var scriptTag = "<script type='text/javascript' src='" + f + "'><\/script>";
+                document.write(scriptTag);
+            }
+        </script>
+
+        <script type="text/javascript" src="OfflineExample/Scripts/spec/LoadTests.spec.js" ></script>
+
+        <script type="text/javascript">
+            (function () {
+                var jasmineEnv = jasmine.getEnv();
+                jasmineEnv.updateInterval = 1000;
+
+                var htmlReporter = new jasmine.TrivialReporter();
+
+                jasmineEnv.addReporter(htmlReporter);
+
+                var currentWindowOnload = window.onload;
+
+                window.onload = function () {
+                    if (currentWindowOnload) {
+                        currentWindowOnload();
+                    }
+                    execJasmine();
+                };
+
+                function execJasmine() {
+                    jasmineEnv.execute();
+                }
+
+            })();
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>
