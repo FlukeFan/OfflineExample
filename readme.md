@@ -3,9 +3,10 @@ Offline Example
 ===============
 
 Prerequisites:
-    .Net Framework 4.0
-    MVC 3
-    IIS7
+
+   * .Net Framework 4.0
+   * MVC 3
+   * IIS7
 
 To build:
 
