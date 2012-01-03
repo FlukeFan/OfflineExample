@@ -2,13 +2,16 @@
 Offline Example
 ===============
 
-Prerequisites:
 
-   * .Net Framework 4.0
-   * MVC 3
-   * IIS7
+Prerequisites
+-------------
 
-To build:
+- .Net Framework 4.0
+- MVC 3
+- IIS7
+
+To build
+--------
 
 1.  Open CommandPrompt.bat and type 'nant'
 
