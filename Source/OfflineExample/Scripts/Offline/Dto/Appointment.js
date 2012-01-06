@@ -1,0 +1,27 @@
+
+function Appointment(obj) {
+    if (!obj) obj = {
+        Id: 0,
+        ClientId: 0,
+        VisitDate: null,
+        Notes: ""
+    };
+
+    obj.class = "Appointment";
+
+    this.toJson = function () { return JSON.stringify(obj); };
+    this.getRaw = function () { return obj; };
+
+    this.getId = function () { return obj.Id; };
+    this.setId = function (id) { obj.Id = id; return this; };
+
+    this.getClientId = function () { return obj.ClientId; };
+    this.setClientId = function (clientId) { obj.ClientId = clientId; return this; };
+
+    this.getVisitDate = function () { return obj.VisitDate; };
+    this.setVisitDate = function (visitDate) { obj.VisitDate = visitDate; return this; };
+
+    this.getNotes = function () { return obj.Notes; };
+    this.setNotes = function (notes) { obj.Notes = notes; return this; };
+}
+

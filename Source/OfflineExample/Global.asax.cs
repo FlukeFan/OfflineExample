@@ -29,9 +29,15 @@ namespace OfflineExample
         {
             var clientId = 1;
 
-            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(0), Notes = "test note 1" }.Execute();
-            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(1), Notes = "test note 2" }.Execute();
-            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(5), Notes = "test note 3" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(00), Notes = "test note 1" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(01), Notes = "test note 2" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(05), Notes = "test note 3" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(09), Notes = "test note 4" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(14), Notes = "test note 5" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(23), Notes = "test note 6" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(45), Notes = "test note 7" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(62), Notes = "test note 8" }.Execute();
+            new Appointment.Create() { ClientId = clientId++, VisitDate = DateTime.UtcNow.Date.AddDays(78), Notes = "test note 9" }.Execute();
         }
     }
 }

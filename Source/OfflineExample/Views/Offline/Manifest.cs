@@ -51,6 +51,8 @@ namespace OfflineExample.Views.Offline
             Cache.Add(new CacheFile() { File = "~/Scripts/jquery.mobile.global.js" });
             Cache.Add(new CacheFile() { File = "~/Scripts/jquery.mobile-1.0.min.js" });
             Cache.Add(new CacheFile() { File = "~/Scripts/Offline/OfflineGlobal.js" });
+            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/Appointment.js" });
+            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/AppointmentMonth.js" });
             Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/CmdFetchFuture.js" });
             Cache.Add(new CacheFile() { File = "~/Scripts/Offline/StorageService.js" });
             Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Index.js" });

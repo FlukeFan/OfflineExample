@@ -1,6 +1,8 @@
 
 load("OfflineExample/Scripts/spec/GlobalStubs.js");
 
+load("OfflineExample/Scripts/Offline/Dto/Appointment.js");
+load("OfflineExample/Scripts/Offline/Dto/AppointmentMonth.js");
 load("OfflineExample/Scripts/Offline/Dto/CmdFetchFuture.js");
 load("OfflineExample/Scripts/Offline/OfflineGlobal.js");
 load("OfflineExample/Scripts/Offline/StorageService.js");

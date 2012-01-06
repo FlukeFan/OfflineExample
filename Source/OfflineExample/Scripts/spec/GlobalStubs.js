@@ -55,4 +55,5 @@ function elementStubMethods(prototype) {
 
 function localStorageStub() {
     this.setItem = function (k, v) { this[k] = v; };
+    this.getItem = function (k) { return this[k]; };
 }
