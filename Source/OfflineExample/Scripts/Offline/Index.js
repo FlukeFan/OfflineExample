@@ -2,7 +2,7 @@
 /// <reference path="..\json2.js"/>
 /// <reference path="OfflineGlobal.js"/>
 
-$(document).delegate("#pageAll", "pageinit", function () {
+$(document).delegate("#pageAll", "pagebeforeshow", function () {
     new indexController({
         list: $("#pageAll #list"),
         currentStatus: $("#pageAll #currentStatus"),
@@ -26,6 +26,7 @@ function indexController(view) {
 indexController.prototype.populate = function () {
     var view = this.getView();
 
+    view.list.text("");
     view.list.append("<li data-params='Nov'><a href='/OfflineExample/Offline/Month'>Nov 2011 <span class='ui-li-count'>2</span></a></li>");
     view.list.append("<li data-params='Jan'><a href='/OfflineExample/Offline/Month'>Jan 2011 <span class='ui-li-count'>7</span></a></li>");
     view.list.append("<li data-params='Feb'><a href='/OfflineExample/Offline/Month'>Feb 2011 <span class='ui-li-count'>3</span></a></li>");

@@ -18,6 +18,7 @@ describe("Index tests", function () {
     it("should populate items during construction", function () {
         var index = new indexController(view);
 
+        expect(view.list.currentText).toBe(""); // verify list was 'cleared' first
         expect(view.list.appended.length).toBe(4);
         expect(view.list.appended[0]).toMatch("<li data-params='Nov'><a");
         expect(view.list.appended[1]).toMatch("<li data-params='Jan'><a");
