@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\OfflineControllerTest.cs" />
+    <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\OnlineControllerTest.cs" />
     <Compile Include="RootStub.cs" />
     <Compile Include="Views\Home\HomeTest.cs" />

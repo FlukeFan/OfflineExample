@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using OfflineExample.Util;
-using System.Linq;
-using System.IO;
+using OfflineExample.Views.Offline;
 
-namespace OfflineExample.Views.Offline
+namespace OfflineExample.Controllers
 {
     public class OfflineController : Controller
     {
@@ -22,7 +22,7 @@ namespace OfflineExample.Views.Offline
         {
             ResponseUtil.SetContentTypeCacheManifest();
 
-            var files = Offline.Manifest.Cache.Select(f => f.Filename());
+            var files = OfflineExample.Views.Offline.Manifest.Cache.Select(f => f.Filename());
 
             var newest = AssemblyUtil.LastModifiedTicks;
             foreach (var file in files)

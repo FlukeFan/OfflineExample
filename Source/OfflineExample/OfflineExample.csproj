@@ -91,10 +91,10 @@
     <Compile Include="Util\ResponseUtil.cs" />
     <Compile Include="Util\UrlExtensions.cs" />
     <Compile Include="Util\RequestUtil.cs" />
-    <Compile Include="Views\Home\HomeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Views\Home\Index.cs" />
     <Compile Include="Views\Offline\Manifest.cs" />
-    <Compile Include="Views\Offline\OfflineController.cs" />
+    <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

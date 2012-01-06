@@ -43,6 +43,7 @@ namespace OfflineExample.Test
             string output = "";
             try
             {
+                Razor.DefaultTemplateService.Namespaces.Add("OfflineExample.Controllers");
                 Razor.DefaultTemplateService.Namespaces.Add("OfflineExample.Util");
                 Razor.DefaultTemplateService.Namespaces.Add("OfflineExample.Views.Offline");
                 Razor.SetTemplateBase(typeof(TestTemplateBase<>));

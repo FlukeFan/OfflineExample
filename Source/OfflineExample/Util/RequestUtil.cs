@@ -22,9 +22,12 @@ namespace OfflineExample.Util
             var viewName = actionMethod.Method.Name;
             var controller = actionMethod.Object.Type;
 
-            var filename = controller.Namespace; // e.g., OfflineExample.Views.Offline
-            filename = filename.Substring(BaseNamespace.Length); // e.g., Views.Offline
-            filename = filename + "." + actionMethod.Method.Name; // e.g., Views.Offline.Manifest
+            var filename = controller.Name; // e.g., HomeController
+
+            if (filename.EndsWith("Controller"))
+                filename = filename.Substring(0, filename.Length - "Controller".Length); // e.g., Home
+
+            filename = ".Views." + filename + "." + actionMethod.Method.Name; // e.g., Views.Home.Index
             filename = HostUtil.MapPath("~" + filename.Replace(".", @"\")) + ".cshtml";
             return filename;
         }
