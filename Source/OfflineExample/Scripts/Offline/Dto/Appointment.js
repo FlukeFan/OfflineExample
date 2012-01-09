@@ -12,7 +12,6 @@ function Appointment(obj) {
     obj.VisitDate = Date.fromJson(obj.VisitDate);
 
     this.toJson = function () { return JSON.stringify(obj); };
-    this.getRaw = function () { return obj; }; // TODO: see if we can get rid of this (it's only for the tests)
 
     this.getId = function () { return obj.Id; };
     this.setId = function (id) { obj.Id = id; return this; };

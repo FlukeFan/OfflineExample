@@ -57,3 +57,8 @@ function localStorageStub() {
     this.setItem = function (k, v) { this[k] = v; };
     this.getItem = function (k) { return this[k]; };
 }
+
+// utility function to get the underlying raw object from a dto
+Object.prototype.getRaw = function () {
+    return JSON.parse(this.toJson());
+}
