@@ -20,9 +20,9 @@ describe("Index tests", function () {
 
         expect(view.list.currentText).toBe(""); // verify list was 'cleared' first
         expect(view.list.appended.length).toBe(4);
-        expect(view.list.appended[0]).toMatch("<li data-params='Nov'><a");
-        expect(view.list.appended[1]).toMatch("<li data-params='Jan'><a");
-        expect(view.list.appended[2]).toMatch("<li data-params='Feb'><a");
+        expect(view.list.appended[0].substr(0, 37)).toBe("<li data-params='{\"month\":\"2011-11-01");
+        expect(view.list.appended[1].substr(0, 37)).toBe("<li data-params='{\"month\":\"2012-01-01");
+        expect(view.list.appended[2].substr(0, 37)).toBe("<li data-params='{\"month\":\"2012-02-01");
         expect(view.list.appended[3]).toMatch("<li></li>");
 
         expect(view.list.listviewEvents.length).toBe(1);

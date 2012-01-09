@@ -1,5 +1,6 @@
 /// <reference path="..\jquery-1.7.1.min.js"/>
 /// <reference path="..\json2.js"/>
+/// <reference path="..\Util\DateUtil.js"/>
 /// <reference path="OfflineGlobal.js"/>
 
 $(document).delegate("#pageAll", "pagebeforeshow", function () {
@@ -23,13 +24,28 @@ function indexController(view) {
     this.populate();
 }
 
+indexController.prototype.formatRow = function (month, count) {
+    var rowTemplate = "<li data-params='@params'><a href='/OfflineExample/Offline/Month'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
+
+    var params = JSON.stringify({ month: month });
+    var monthDescription = month.getMonthShortName() + " " + month.getFullYear();
+
+    var row =
+        rowTemplate
+            .replace("@params", params)
+            .replace("@monthDescription", monthDescription)
+            .replace("@count", count);
+
+    return row;
+}
+
 indexController.prototype.populate = function () {
     var view = this.getView();
 
     view.list.text("");
-    view.list.append("<li data-params='Nov'><a href='/OfflineExample/Offline/Month'>Nov 2011 <span class='ui-li-count'>2</span></a></li>");
-    view.list.append("<li data-params='Jan'><a href='/OfflineExample/Offline/Month'>Jan 2011 <span class='ui-li-count'>7</span></a></li>");
-    view.list.append("<li data-params='Feb'><a href='/OfflineExample/Offline/Month'>Feb 2011 <span class='ui-li-count'>3</span></a></li>");
+    view.list.append(this.formatRow(new Date("01 Nov 2011"), 2));
+    view.list.append(this.formatRow(new Date("01 Jan 2012"), 7));
+    view.list.append(this.formatRow(new Date("01 Feb 2012"), 3));
     view.list.append("<li></li>");
     view.list.listview("refresh");
 }
