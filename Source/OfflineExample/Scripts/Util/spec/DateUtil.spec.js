@@ -20,4 +20,15 @@ describe("DateUtil tests", function () {
         expect(monthOnly.valueOf()).toBe(new Date("01 Feb 2003").valueOf());
     });
 
+    it("should convert MS JsonResult dates to JS dates", function () {
+        var realDate = new Date("01-Feb-2003");
+        var stringDate = "2003-02-01";
+        var msJsonDate = "\/Date(1044057600000)\/";
+
+        expect(Date.fromJson(null)).toBe(null);
+        expect(Date.fromJson(realDate)).toBe(realDate);
+        expect(Date.fromJson(stringDate).valueOf()).toBe(realDate.valueOf());
+        expect(Date.fromJson(msJsonDate).valueOf()).toBe(realDate.valueOf());
+    });
+
 });

@@ -1,3 +1,4 @@
+/// <reference path="..\..\Util\DateUtil.js"/>
 
 function AppointmentMonth(obj) {
     if (!obj) obj = {
@@ -6,6 +7,7 @@ function AppointmentMonth(obj) {
     };
 
     obj.class = "AppointmentMonth";
+    obj.Month = Date.fromJson(obj.Month);
 
     this.toJson = function () { return JSON.stringify(obj); };
 

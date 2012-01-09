@@ -55,13 +55,9 @@ StorageService.prototype.getAllByMonth = function () {
     return result;
 }
 
-// TODO: move this logic to the appointment constructor
 StorageService.prototype.getRawList = function () {
     var localStore = this.getLocalStore();
-    return JSON.parse(localStore.getItem(StorageService.KEY_APPPOINTMENTS), function (k, v) {
-        if (k == "VisitDate")
-            return new Date(v);
-
-        return v;
-    });
+    var json = localStore.getItem(StorageService.KEY_APPPOINTMENTS);
+    var rawList = JSON.parse(json);
+    return rawList;
 }

@@ -22,4 +22,15 @@
         return new Date(this.getFullYear(), this.getMonth(), 1);
     }
 
+    Date.fromJson = function (dte) {
+        if (typeof (dte) == "string") {
+            if (dte.substr(0, 6) == "\/Date(")
+                return new Date(parseInt(dte.substr(6)));
+
+            return new Date(dte);
+        }
+
+        return dte;
+    }
+
 })();

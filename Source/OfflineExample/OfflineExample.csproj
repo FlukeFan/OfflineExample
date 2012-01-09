@@ -64,6 +64,8 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0.min.js" />
     <Content Include="Scripts\Offline\Dto\CmdFetchFuture.js" />
+    <Content Include="Scripts\Offline\Dto\Appointment.js" />
+    <Content Include="Scripts\Offline\Dto\AppointmentMonth.js" />
     <Content Include="Scripts\Offline\StorageService.js" />
     <Content Include="Scripts\Offline\Index.js" />
     <Content Include="Scripts\Offline\Months.js" />
@@ -74,6 +76,8 @@
     <Content Include="Scripts\spec\consoleLoader.js" />
     <Content Include="Scripts\spec\GlobalStubs.js" />
     <Content Include="Scripts\spec\LoadTests.spec.js" />
+    <Content Include="Scripts\Util\DateUtil.js" />
+    <Content Include="Scripts\Util\spec\DateUtil.spec.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Offline\Month.cshtml" />
     <None Include="Views\Offline\Index.cshtml" />
