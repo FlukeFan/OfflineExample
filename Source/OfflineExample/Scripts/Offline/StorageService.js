@@ -38,15 +38,6 @@ StorageService.prototype.execute = function (cmd, callback) {
     });
 }
 
-// TODO: add this to the Date prototype for cleaner code
-function toYearMonth(date) {
-    var yearMonth = new Date();
-    yearMonth.setTime(0);
-    yearMonth.setFullYear(date.getFullYear());
-    yearMonth.setMonth(date.getMonth());
-    return yearMonth;
-}
-
 StorageService.prototype.getAllByMonth = function () {
     var rawList = this.getRawList();
     var result = [];
@@ -54,8 +45,8 @@ StorageService.prototype.getAllByMonth = function () {
     rawList.forEach(function (rawObj) {
         var app = new Appointment(rawObj);
 
-        if ((result.length == 0) || (result[result.length - 1].getMonth().valueOf() != toYearMonth(app.getVisitDate()).valueOf()))
-            result.push(new AppointmentMonth().setMonth(toYearMonth(app.getVisitDate())));
+        if ((result.length == 0) || (result[result.length - 1].getMonth().valueOf() != app.getVisitDate().getTrimToMonth().valueOf()))
+            result.push(new AppointmentMonth().setMonth(app.getVisitDate().getTrimToMonth()));
 
         var last = result[result.length - 1];
         last.setCount(last.getCount() + 1);

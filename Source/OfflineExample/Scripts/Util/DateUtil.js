@@ -18,4 +18,8 @@
         return shortMonth[this.getMonth()];
     }
 
+    Date.prototype.getTrimToMonth = function () {
+        return new Date(this.getFullYear(), this.getMonth(), 1);
+    }
+
 })();
