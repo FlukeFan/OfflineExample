@@ -54,4 +54,16 @@ describe("StorageService tests", function () {
         expect(result[1].getCount()).toBe(1);
     });
 
+    it("should return an empty list when nothing is stored", function () {
+        // arrange
+        var localStore = new localStorageStub();
+        var service = new StorageService(localStore);
+
+        // act
+        var result = service.getAllByMonth();
+
+        // assert
+        expect(result.length).toBe(0);
+    });
+
 });

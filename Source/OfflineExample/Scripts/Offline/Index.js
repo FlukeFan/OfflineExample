@@ -2,6 +2,7 @@
 /// <reference path="..\json2.js"/>
 /// <reference path="..\Util\DateUtil.js"/>
 /// <reference path="OfflineGlobal.js"/>
+/// <reference path="StorageService.js"/>
 
 $(document).delegate("#pageAll", "pagebeforeshow", function () {
     new indexController({
@@ -10,6 +11,8 @@ $(document).delegate("#pageAll", "pagebeforeshow", function () {
         testButton: $("#pageAll #tst")
     });
 });
+
+indexController.ROW_TEMPLATE = "<li data-params='@params'><a href='/OfflineExample/Offline/Month'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
 
 function indexController(view) {
 
@@ -25,13 +28,11 @@ function indexController(view) {
 }
 
 indexController.prototype.formatRow = function (month, count) {
-    var rowTemplate = "<li data-params='@params'><a href='/OfflineExample/Offline/Month'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
-
-    var params = JSON.stringify({ month: month });
+    var params = JSON.stringify({ month: month.getTrimToMonth() });
     var monthDescription = month.getMonthShortName() + " " + month.getFullYear();
 
     var row =
-        rowTemplate
+        indexController.ROW_TEMPLATE
             .replace("@params", params)
             .replace("@monthDescription", monthDescription)
             .replace("@count", count);
@@ -40,12 +41,16 @@ indexController.prototype.formatRow = function (month, count) {
 }
 
 indexController.prototype.populate = function () {
+    var that = this;
     var view = this.getView();
+    var appointmentMonths = Storage.getAllByMonth();
 
     view.list.text("");
-    view.list.append(this.formatRow(new Date("01 Nov 2011"), 2));
-    view.list.append(this.formatRow(new Date("01 Jan 2012"), 7));
-    view.list.append(this.formatRow(new Date("01 Feb 2012"), 3));
+
+    appointmentMonths.forEach(function (appointmentMonth) {
+        view.list.append(that.formatRow(appointmentMonth.getMonth(), appointmentMonth.getCount()));
+    });
+
     view.list.append("<li></li>");
     view.list.listview("refresh");
 }

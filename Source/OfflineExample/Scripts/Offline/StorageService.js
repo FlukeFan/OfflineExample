@@ -58,6 +58,10 @@ StorageService.prototype.getAllByMonth = function () {
 StorageService.prototype.getRawList = function () {
     var localStore = this.getLocalStore();
     var json = localStore.getItem(StorageService.KEY_APPPOINTMENTS);
+
+    if (json == null)
+        return [];
+
     var rawList = JSON.parse(json);
     return rawList;
 }
