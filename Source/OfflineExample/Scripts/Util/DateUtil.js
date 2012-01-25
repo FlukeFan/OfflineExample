@@ -23,11 +23,19 @@
     }
 
     Date.fromJson = function (dte) {
-        if (typeof (dte) == "string") {
-            if (dte.substr(0, 6) == "\/Date(")
-                return new Date(parseInt(dte.substr(6)));
+        // date parsing fails on some devices, so manually parse them *sigh*
+        // http://stackoverflow.com/questions/5392729/javascript-invalid-date-in-ios-android-2-2
+        // http://stackoverflow.com/questions/5324178/javascript-date-parsing-on-iphone
 
-            return new Date(dte);
+        if (typeof (dte) == "string") {
+            var arr = dte.split(/[- :T]/);
+            var year = arr[0];
+            var month = arr[1] - 1;
+            var day = arr[2];
+            var hours = (arr.length > 3) ? arr[3] : 0;
+            var minutes = (arr.length > 4) ? arr[4] : 0;
+            var seconds = (arr.length > 5) ? parseInt(arr[5]) : 0;
+            return new Date(year, month, day, hours, minutes, seconds);
         }
 
         return dte;
