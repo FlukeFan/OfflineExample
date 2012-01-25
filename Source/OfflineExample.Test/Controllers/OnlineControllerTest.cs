@@ -66,5 +66,19 @@ namespace OfflineExample.Test.Controllers
             Assert.That(result, Is.Not.Null, "null model returned");
             Assert.That(result.TestValue, Is.EqualTo("1234"));
         }
+
+        public class ModelWithDateTime
+        {
+            public DateTime DateTimeProp { get { return new DateTime(2009, 08, 07, 06, 05, 04); } }
+        }
+
+        [Test]
+        public void CustomJsonResult()
+        {
+            var data = new ModelWithDateTime();
+            var result = OnlineController.CustomJsonResult.Serialize(data);
+
+            Assert.That(result, Is.EqualTo("{\"DateTimeProp\":\"2009-08-07T06:05\"}"));
+        }
     }
 }

@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Controllers\OnlineController.cs" />
     <Compile Include="Util\AssemblyUtil.cs" />
+    <Compile Include="Util\JsonString.cs" />
     <Compile Include="Util\HostUtil.cs" />
     <Compile Include="Util\ResponseUtil.cs" />
     <Compile Include="Util\UrlExtensions.cs" />

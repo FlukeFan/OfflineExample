@@ -98,6 +98,7 @@
         <exclusion type="Class" pattern="Domain.Test.Builder*" />
         <exclusion type="Class" pattern="OfflineExample.Global" />
         <exclusion type="Class" pattern="OfflineExample.Util.HostUtil" />
+        <exclusion type="Class" pattern="OfflineExample.Util.JsonString" />
         <exclusion type="Class" pattern="OfflineExample.Util.ResponseUtil" />
         <exclusion type="Class" pattern="OfflineExample.Util.RequestUtil" />
         <exclusion type="Class" pattern="OfflineExample.Util.UrlExtensions" />
