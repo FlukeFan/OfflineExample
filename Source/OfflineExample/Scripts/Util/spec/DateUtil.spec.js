@@ -20,6 +20,14 @@ describe("DateUtil tests", function () {
         expect(monthOnly.valueOf()).toBe(new Date("01 Feb 2003").valueOf());
     });
 
+    it("should return json string format of the date", function () {
+        var dte = new Date("08-Jul-2006 05:04:03");
+
+        var dteString = dte.toJsonString();
+
+        expect(dteString).toBe("2006-07-08T05:04:03");
+    });
+
     it("should convert string dates to JS dates", function () {
 
         // It's 2012, and we still can't parse dates reliably on a client FFS!!

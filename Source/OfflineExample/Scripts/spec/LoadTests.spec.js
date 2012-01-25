@@ -8,8 +8,10 @@ load("OfflineExample/Scripts/Offline/OfflineGlobal.js");
 load("OfflineExample/Scripts/Offline/StorageService.js");
 load("OfflineExample/Scripts/Offline/Index.js");
 load("OfflineExample/Scripts/Util/DateUtil.js");
+load("OfflineExample/Scripts/Util/JsonUtil.js");
 
 load("OfflineExample/Scripts/Offline/spec/Index.spec.js");
 load("OfflineExample/Scripts/Offline/spec/StorageService.spec.js");
 load("OfflineExample/Scripts/Util/spec/DateUtil.spec.js");
+load("OfflineExample/Scripts/Util/spec/JsonUtil.spec.js");
 

@@ -76,7 +76,9 @@
     <Content Include="Scripts\spec\consoleLoader.js" />
     <Content Include="Scripts\spec\GlobalStubs.js" />
     <Content Include="Scripts\spec\LoadTests.spec.js" />
+    <Content Include="Scripts\Util\JsonUtil.js" />
     <Content Include="Scripts\Util\DateUtil.js" />
+    <Content Include="Scripts\Util\spec\JsonUtil.spec.js" />
     <Content Include="Scripts\Util\spec\DateUtil.spec.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Offline\Month.cshtml" />

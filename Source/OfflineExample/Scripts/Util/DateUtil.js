@@ -22,6 +22,20 @@
         return new Date(this.getFullYear(), this.getMonth(), 1);
     }
 
+    Date.prototype.toJsonString = function () {
+        var year = this.getFullYear();
+        var month = this.getMonth() + 1;
+        var day = this.getDate();
+        var hours = this.getHours();
+        var minutes = this.getMinutes();
+        var seconds = this.getSeconds();
+        return year + "-" + leadingZero(month) + "-" + leadingZero(day) + "T" + leadingZero(hours) + ":" + leadingZero(minutes) + ":" + leadingZero(seconds);
+    }
+
+    function leadingZero(num) {
+        return (num < 10) ? "0" + num : num;
+    }
+
     Date.fromJson = function (dte) {
         // date parsing fails on some devices, so manually parse them *sigh*
         // http://stackoverflow.com/questions/5392729/javascript-invalid-date-in-ios-android-2-2
