@@ -58,11 +58,11 @@
     <Content Include="Content\images\icons-18-white.png" />
     <Content Include="Content\images\icons-36-black.png" />
     <Content Include="Content\images\icons-36-white.png" />
-    <Content Include="Content\jquery.mobile-1.0.min.css" />
-    <Content Include="Content\jquery.mobile.structure-1.0.min.css" />
+    <Content Include="Content\jquery.mobile-1.0.1.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.0.1.min.css" />
+    <Content Include="Scripts\jquery.mobile-1.0.1.min.js" />
     <Content Include="Scripts\jquery.mobile.global.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Scripts\jquery.mobile-1.0.min.js" />
     <Content Include="Scripts\Offline\Dto\CmdFetchFuture.js" />
     <Content Include="Scripts\Offline\Dto\Appointment.js" />
     <Content Include="Scripts\Offline\Dto\AppointmentMonth.js" />

@@ -45,8 +45,8 @@ namespace OfflineExample.Views.Offline
 
             // styles
             Cache.Add(new CacheFile() { File = "~/favicon.ico" });
-            Cache.Add(new CacheFile() { File = "~/Content/jquery.mobile-1.0.min.css" });
-            Cache.Add(new CacheFile() { File = "~/Content/jquery.mobile.structure-1.0.min.css" });
+            Cache.Add(new CacheFile() { File = "~/Content/jquery.mobile-1.0.1.min.css" });
+            Cache.Add(new CacheFile() { File = "~/Content/jquery.mobile.structure-1.0.1.min.css" });
             Cache.Add(new CacheFile() { File = "~/Content/images/ajax-loader.png" });
             Cache.Add(new CacheFile() { File = "~/Content/images/icons-18-black.png" });
             Cache.Add(new CacheFile() { File = "~/Content/images/icons-18-white.png" });
@@ -56,7 +56,7 @@ namespace OfflineExample.Views.Offline
             // scripts
             Cache.Add(new CacheScript() { File = "~/Scripts/jquery-1.7.1.min.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/jquery.mobile.global.js" });
-            Cache.Add(new CacheScript() { File = "~/Scripts/jquery.mobile-1.0.min.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/jquery.mobile-1.0.1.min.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Util/DateUtil.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Util/JsonUtil.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Dto/Appointment.js" });
