@@ -43,7 +43,7 @@ OfflineGlobal.prototype.updatedCache = function () {
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
         // manifest was updated, so refresh the page with the new cache content
         window.applicationCache.swapCache();
-        document.location.href = window.location;
+        document.location.href = window.location.href;
     }
 }
 
