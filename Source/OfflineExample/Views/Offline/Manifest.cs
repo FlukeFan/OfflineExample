@@ -10,6 +10,7 @@ namespace OfflineExample.Views.Offline
     public class Manifest
     {
         public static IList<ICacheItem> Cache;
+        public static IList<CacheScript> CachedScripts;
 
         public interface ICacheItem
         {
@@ -24,6 +25,11 @@ namespace OfflineExample.Views.Offline
             public string Filename() { return HostUtil.MapPath(File); }
         }
 
+        public class CacheScript : CacheFile
+        {
+            public CacheScript() { CachedScripts.Add(this); }
+        }
+
         public class CacheView<TController> : ICacheItem
         {
             public CacheView(Expression<Func<TController, ActionResult>> action) { ViewAction = action; }
@@ -35,6 +41,7 @@ namespace OfflineExample.Views.Offline
         static Manifest()
         {
             Cache = new List<ICacheItem>();
+            CachedScripts = new List<CacheScript>();
 
             // styles
             Cache.Add(new CacheFile() { File = "~/favicon.ico" });
@@ -47,21 +54,18 @@ namespace OfflineExample.Views.Offline
             Cache.Add(new CacheFile() { File = "~/Content/images/icons-36-white.png" });
 
             // scripts
-            Cache.Add(new CacheFile() { File = "~/Scripts/jquery-1.7.1.min.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/jquery.mobile.global.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/jquery.mobile-1.0.min.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Util/DateUtil.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Util/JsonUtil.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/Appointment.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/AppointmentMonth.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/CmdFetchFuture.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/OfflineGlobal.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/Appointment.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/AppointmentMonth.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Dto/CmdFetchFuture.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/StorageService.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Index.js" });
-            Cache.Add(new CacheFile() { File = "~/Scripts/Offline/Months.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/jquery-1.7.1.min.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/jquery.mobile.global.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/jquery.mobile-1.0.min.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Util/DateUtil.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Util/JsonUtil.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Dto/Appointment.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Dto/AppointmentMonth.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Dto/CmdFetchFuture.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/OfflineGlobal.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/StorageService.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Index.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Months.js" });
 
             // pages
             Cache.Add(new CacheView<OfflineController>(c => c.Index()));

@@ -6,18 +6,10 @@
 
     <link rel="stylesheet" href="@Url.FileContent("~/Content/jquery.mobile-1.0.min.css")" />
 
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery-1.7.1.min.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery.mobile.global.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/jquery.mobile-1.0.min.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Util/DateUtil.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Util/JsonUtil.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Dto/Appointment.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Dto/AppointmentMonth.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Dto/CmdFetchFuture.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/OfflineGlobal.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/StorageService.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Index.js")"></script>
-    <script type="text/javascript" src="@Url.FileContent("~/Scripts/Offline/Months.js")"></script>
+    @* Add manifested script files to the Manifest class *@
+    @foreach(var scriptFile in Manifest.CachedScripts) {
+        <script type="text/javascript" src="@Url.FileContent(scriptFile.File)"></script>
+    }
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

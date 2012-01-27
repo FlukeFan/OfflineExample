@@ -64,7 +64,7 @@ indexController.prototype.displayStatus = function (isOnline) {
 indexController.prototype.testButtonClick = function () {
 
     $(document).ajaxError(function (evt, jqXHR, ajaxSettings, thrownError) {
-        alert(thrownError);
+        // do nothing
     });
 
     var t = {
