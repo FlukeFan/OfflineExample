@@ -70,6 +70,7 @@ namespace OfflineExample.Views.Offline
             // pages
             Cache.Add(new CacheView<OfflineController>(c => c.Index()));
             Cache.Add(new CacheView<OfflineController>(c => c.Month()));
+            Cache.Add(new CacheView<OfflineController>(c => c.Edit()));
         }
 
         public long LastModified;

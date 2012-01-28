@@ -83,6 +83,7 @@
     <Content Include="Scripts\Util\spec\DateUtil.spec.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Offline\Month.cshtml" />
+    <Content Include="Views\Offline\Edit.cshtml" />
     <None Include="Views\Offline\Index.cshtml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

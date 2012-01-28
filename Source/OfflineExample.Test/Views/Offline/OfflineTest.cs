@@ -27,6 +27,14 @@ namespace OfflineExample.Test.Views.Offline
         }
 
         [Test]
+        public void EditRender()
+        {
+            var result = Render<OfflineController, object>(c => c.Edit(), null);
+
+            Assert.That(result, Is.StringContaining("div id=\"pageEdit\""));
+        }
+
+        [Test]
         public void ManifestRender()
         {
             var result = Render<OfflineController, Manifest>(c => c.Manifest(), new Manifest() { LastModified = 12345L });

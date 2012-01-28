@@ -18,6 +18,11 @@ namespace OfflineExample.Controllers
             return View();
         }
 
+        public ViewResult Edit()
+        {
+            return View();
+        }
+
         public PartialViewResult Manifest()
         {
             ResponseUtil.SetContentTypeCacheManifest();

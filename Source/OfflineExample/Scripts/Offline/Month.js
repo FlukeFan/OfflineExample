@@ -1,16 +1,20 @@
 /// <reference path="..\jquery-1.7.1.min.js"/>
 /// <reference path="..\Util\DateUtil.js"/>
 
-$(document).delegate("#pageMonth", "pagebeforeshow", function () {
-    if (!window.params)
-        return; // no parameters defined
+var monthParams = null;
 
-    var p = JSON.parse(params);
-    p.month = Date.fromJson(p.month);
-    //$("#monthTitle").text(p.month.getMonthShortName());
+$(document).delegate("#pageMonth", "pagebeforeshow", function () {
+    if (window.sessionStorage.getItem("params")) {
+        monthParams = JSON.parse(window.sessionStorage.getItem("params"));
+        monthParams.month = Date.fromJson(monthParams.month);
+        window.sessionStorage.setItem("params", null);
+    }
+
+    if (monthParams == null)
+        return;
 
     new MonthController({
-        params: p,
+        params: monthParams,
         title: $("#monthTitle"),
         list: $("#pageMonth #list")
     });

@@ -41,7 +41,7 @@
             while (dataElement.tagName != 'LI')
                 dataElement = dataElement.parentNode;
 
-            window.params = dataElement.getAttribute("data-params");
+            window.sessionStorage.setItem("params", dataElement.getAttribute("data-params"));
         });
 
     </script>

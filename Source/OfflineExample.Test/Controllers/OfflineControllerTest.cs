@@ -31,6 +31,16 @@ namespace OfflineExample.Test.Controllers
         }
 
         [Test]
+        public void Edit()
+        {
+            var controller = new OfflineController();
+
+            var result = controller.Edit();
+
+            Assert.That(result.View, Is.Null);
+        }
+
+        [Test]
         public void Manifest()
         {
             var contentTypeSet = false;
