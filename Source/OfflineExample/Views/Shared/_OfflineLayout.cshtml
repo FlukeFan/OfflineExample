@@ -33,15 +33,21 @@
         }
 
         $(document).bind("pagebeforeload", function (e, data) {
+            window.sessionStorage.removeItem("params");
+
+            if (!event)
+                return;
+
             var dataElement = event.srcElement;
 
-            if (!dataElement.tagName)
+            if (!dataElement || !dataElement.tagName)
                 return; // it wasn't an HTML element
 
-            while (dataElement.tagName != 'LI')
+            while (dataElement && dataElement.getAttribute && !dataElement.getAttribute("data-params"))
                 dataElement = dataElement.parentNode;
 
-            window.sessionStorage.setItem("params", dataElement.getAttribute("data-params"));
+            if (dataElement && dataElement.getAttribute && dataElement.getAttribute("data-params"))
+                window.sessionStorage.setItem("params", dataElement.getAttribute("data-params"));
         });
 
     </script>

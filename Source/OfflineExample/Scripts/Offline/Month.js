@@ -4,10 +4,11 @@
 var monthParams = null;
 
 $(document).delegate("#pageMonth", "pagebeforeshow", function () {
+
     if (window.sessionStorage.getItem("params")) {
         monthParams = JSON.parse(window.sessionStorage.getItem("params"));
         monthParams.month = Date.fromJson(monthParams.month);
-        window.sessionStorage.setItem("params", null);
+        window.sessionStorage.removeItem("params");
     }
 
     if (monthParams == null)
@@ -20,7 +21,7 @@ $(document).delegate("#pageMonth", "pagebeforeshow", function () {
     });
 });
 
-MonthController.ROW_TEMPLATE = "<li data-params='@params'><a href='#'>@day - @notes</a></li>";
+MonthController.ROW_TEMPLATE = "<li data-params='@params'><a href='/OfflineExample/Offline/Edit'>@day - @notes</a></li>";
 
 function MonthController(view) {
     var that = this;
