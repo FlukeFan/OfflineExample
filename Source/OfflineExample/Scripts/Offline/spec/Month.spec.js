@@ -26,4 +26,27 @@ describe("Month tests", function () {
         expect(view.title.currentText).toBe("Jul");
     });
 
+    it("should populate items during construction", function () {
+
+        spyOn(Storage, "getAllForMonth").andCallFake(function () {
+            return [
+                new Appointment().setVisitDate(new Date("02 Jul 2004")).setNotes("r1"),
+                new Appointment().setVisitDate(new Date("03 Jul 2004")).setNotes("r2"),
+            ];
+        });
+
+        spyOn(MonthController, "ROW_TEMPLATE");
+        MonthController.ROW_TEMPLATE = "(@day)(@notes)";
+
+        var month = new MonthController(view);
+        expect(view.list.currentText).toBe(""); // verify list was 'cleared' first
+        expect(view.list.appended.length).toBe(3);
+        expect(view.list.appended[0]).toBe("(2)(r1)");
+        expect(view.list.appended[1]).toBe("(3)(r2)");
+        expect(view.list.appended[2]).toMatch("<li></li>");
+
+        expect(view.list.listviewEvents.length).toBe(1);
+        expect(view.list.listviewEvents[0]).toBe("refresh");
+    });
+
 });
