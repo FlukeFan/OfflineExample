@@ -55,6 +55,23 @@ StorageService.prototype.getAllByMonth = function () {
     return result;
 }
 
+StorageService.prototype.getAllForMonth = function (month) {
+    var rawList = this.getRawList();
+    var result = [];
+    var begin = month.getTrimToMonth();
+    var end = month.getTrimToMonth().setMonth(begin.getMonth() + 1);
+
+    rawList.forEach(function (rawObj) {
+        var app = new Appointment(rawObj);
+        var visitDate = app.getVisitDate();
+
+        if (visitDate >= begin && visitDate < end)
+            result.push(app);
+    });
+
+    return result;
+}
+
 StorageService.prototype.getRawList = function () {
     var localStore = this.getLocalStore();
     var json = localStore.getItem(StorageService.KEY_APPPOINTMENTS);

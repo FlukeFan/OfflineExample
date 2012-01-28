@@ -66,4 +66,28 @@ describe("StorageService tests", function () {
         expect(result.length).toBe(0);
     });
 
+    it("should return the stored list, for items only in the specified month", function () {
+        // arrange
+        var localStore = new localStorageStub();
+        var service = new StorageService(localStore);
+
+        var storedAppointments = [
+            new Appointment().setVisitDate(new Date("30 Jun 2001 00:00:00")).setNotes("a1").getRaw(),
+            new Appointment().setVisitDate(new Date("01 Jul 2001 00:00:00")).setNotes("a2").getRaw(),
+            new Appointment().setVisitDate(new Date("31 Jul 2001 23:59:59")).setNotes("a3").getRaw(),
+            new Appointment().setVisitDate(new Date("01 Aug 2001 00:00:00")).setNotes("a4").getRaw(),
+        ];
+
+        localStore.setItem(StorageService.KEY_APPPOINTMENTS, JSON.stringify(storedAppointments));
+
+        // act
+        var result = service.getAllForMonth(new Date("02 Jul 2001 21:20:00"));
+
+        // assert
+        expect(result.length).toBe(2);
+
+        expect(result[0].getNotes()).toBe("a2");
+        expect(result[1].getNotes()).toBe("a3");
+    });
+
 });
