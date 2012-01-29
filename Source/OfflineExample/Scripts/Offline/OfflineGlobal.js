@@ -20,7 +20,7 @@ OfflineGlobal.prototype.init = function () {
     //  https://github.com/jquery/jquery-mobile/issues/1579
 
     $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-        if (originalOptions.forceNetwork == undefined)
+        if (!originalOptions.forceNetwork)
             options.isLocal = true;
     });
 

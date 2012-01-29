@@ -32,22 +32,22 @@
 
         }
 
-        $(document).bind("pagebeforeload", function (e, data) {
-            window.sessionStorage.removeItem("params");
+        $(document).bind("pagebeforechange", function (e, data) {
 
-            if (!event)
-                return;
+            if (typeof(data.toPage) === "string") {
+                window.sessionStorage.removeItem("params");
 
-            var dataElement = event.srcElement;
+                var toPage = data.toPage;
+                var queryCharPosition = toPage.indexOf("?params=");
 
-            if (!dataElement || !dataElement.tagName)
-                return; // it wasn't an HTML element
+                if (queryCharPosition >= 0) {
+                    var params = toPage.substring(queryCharPosition + 8);
+                    toPage = toPage.substring(0, queryCharPosition);
 
-            while (dataElement && dataElement.getAttribute && !dataElement.getAttribute("data-params"))
-                dataElement = dataElement.parentNode;
-
-            if (dataElement && dataElement.getAttribute && dataElement.getAttribute("data-params"))
-                window.sessionStorage.setItem("params", dataElement.getAttribute("data-params"));
+                    window.sessionStorage.setItem("params", params);
+                    data.toPage = toPage;
+                }
+            }
         });
 
     </script>

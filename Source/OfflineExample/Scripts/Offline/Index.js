@@ -12,7 +12,7 @@ $(document).delegate("#pageAll", "pagebeforeshow", function () {
     });
 });
 
-indexController.ROW_TEMPLATE = "<li data-params='@params'><a href='/OfflineExample/Offline/Month'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
+indexController.ROW_TEMPLATE = "<li><a href='/OfflineExample/Offline/Month?params=@params'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
 
 function indexController(view) {
 
