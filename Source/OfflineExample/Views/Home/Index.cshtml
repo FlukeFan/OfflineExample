@@ -5,6 +5,7 @@
     <title>Offline Example</title>
     <link rel="shortcut icon" href="@Url.FileContent("~/favicon.ico")" />
     <link rel="stylesheet" href="@Url.FileContent("~/Content/jquery.mobile-1.0.1.min.css")" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="ui-mobile-viewport" style="height:100%;">
@@ -31,6 +32,11 @@
             <a href="chrome://appcache-internals/" rel="external">
                 chrome://appcache-internals/
             </a>
+        </p>
+
+        <p>
+            Note, if you're using IE (9+) and accessing this on an intranet, you may have to
+            manually disable Compatibility View.
         </p>
     </div>
 
