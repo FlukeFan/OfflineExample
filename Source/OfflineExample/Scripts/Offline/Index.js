@@ -1,13 +1,14 @@
 /// <reference path="..\jquery-1.7.1.min.js"/>
 /// <reference path="..\json2.js"/>
 /// <reference path="..\Util\DateUtil.js"/>
-/// <reference path="OfflineGlobal.js"/>
+/// <reference path="Footer.js"/>
 /// <reference path="StorageService.js"/>
 
 $(document).delegate("#pageAll", "pagebeforeshow", function () {
+    FooterController.Init($("#pageAll"));
+
     new indexController({
         list: $("#pageAll #list"),
-        currentStatus: $("#pageAll #currentStatus"),
         testButton: $("#pageAll #tst")
     });
 });
@@ -18,9 +19,6 @@ function indexController(view) {
 
     var that = this;
     this.getView = function () { return view; }
-
-    OfflineGlobal.onIndicateOffline = function () { that.displayStatus(false); }
-    OfflineGlobal.onIndicateOnline = function () { that.displayStatus(true); }
 
     view.testButton.click(function () { that.testButtonClick(); });
 
@@ -53,12 +51,6 @@ indexController.prototype.populate = function () {
 
     view.list.append("<li></li>");
     view.list.listview("refresh");
-}
-
-indexController.prototype.displayStatus = function (isOnline) {
-    var view = this.getView();
-    view.currentStatus.text(isOnline ? "Online" : "Offline");
-    view.currentStatus.css("color", isOnline ? "lightgreen" : "red");
 }
 
 indexController.prototype.testButtonClick = function () {

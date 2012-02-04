@@ -6,11 +6,13 @@ load("OfflineExample/Scripts/Offline/Dto/AppointmentMonth.js");
 load("OfflineExample/Scripts/Offline/Dto/CmdFetchFuture.js");
 load("OfflineExample/Scripts/Offline/OfflineGlobal.js");
 load("OfflineExample/Scripts/Offline/StorageService.js");
+load("OfflineExample/Scripts/Offline/Footer.js");
 load("OfflineExample/Scripts/Offline/Index.js");
 load("OfflineExample/Scripts/Offline/Month.js");
 load("OfflineExample/Scripts/Util/DateUtil.js");
 load("OfflineExample/Scripts/Util/JsonUtil.js");
 
+load("OfflineExample/Scripts/Offline/spec/Footer.spec.js");
 load("OfflineExample/Scripts/Offline/spec/Index.spec.js");
 load("OfflineExample/Scripts/Offline/spec/Month.spec.js");
 load("OfflineExample/Scripts/Offline/spec/StorageService.spec.js");

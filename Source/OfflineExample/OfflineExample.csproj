@@ -67,6 +67,8 @@
     <Content Include="Scripts\Offline\Dto\CmdFetchFuture.js" />
     <Content Include="Scripts\Offline\Dto\Appointment.js" />
     <Content Include="Scripts\Offline\Dto\AppointmentMonth.js" />
+    <Content Include="Scripts\Offline\Footer.js" />
+    <Content Include="Scripts\Offline\spec\Footer.spec.js" />
     <Content Include="Scripts\Offline\spec\Month.spec.js" />
     <Content Include="Scripts\Offline\StorageService.js" />
     <Content Include="Scripts\Offline\Index.js" />

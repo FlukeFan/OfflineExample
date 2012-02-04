@@ -11,7 +11,6 @@ describe("Index tests", function () {
     beforeEach(function () {
         view = {
             list: new elementStub(),
-            currentStatus: new elementStub(),
             testButton: new elementStub()
         };
 
@@ -42,22 +41,6 @@ describe("Index tests", function () {
 
         expect(view.list.listviewEvents.length).toBe(1);
         expect(view.list.listviewEvents[0]).toBe("refresh");
-    });
-
-    it("should show offline when offline raised", function () {
-        var index = new indexController(view);
-        OfflineGlobal.onIndicateOffline();
-
-        expect(view.currentStatus.currentText).toBe("Offline");
-        expect(view.currentStatus.currentCss["color"]).toBe("red");
-    });
-
-    it("should show online when online raised", function () {
-        var index = new indexController(view);
-        OfflineGlobal.onIndicateOnline();
-
-        expect(view.currentStatus.currentText).toBe("Online");
-        expect(view.currentStatus.currentCss["color"]).toBe("lightgreen");
     });
 
     it("should replace items in template", function () {

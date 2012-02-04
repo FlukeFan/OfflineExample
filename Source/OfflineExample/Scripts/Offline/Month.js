@@ -14,6 +14,8 @@ $(document).delegate("#pageMonth", "pagebeforeshow", function () {
     if (monthParams == null)
         return;
 
+    FooterController.Init($("#pageMonth"));
+
     new MonthController({
         params: monthParams,
         title: $("#monthTitle"),

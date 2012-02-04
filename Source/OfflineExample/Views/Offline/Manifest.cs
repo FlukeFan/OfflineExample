@@ -64,6 +64,7 @@ namespace OfflineExample.Views.Offline
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Dto/CmdFetchFuture.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/OfflineGlobal.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/StorageService.js" });
+            Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Footer.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Index.js" });
             Cache.Add(new CacheScript() { File = "~/Scripts/Offline/Month.js" });
 
