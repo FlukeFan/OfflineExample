@@ -14,6 +14,10 @@ function OfflineGlobal(settings) {
 
 }
 
+OfflineGlobal.getEditUrl = function () {
+    return OfflineGlobal.current.settings().editUrl;
+}
+
 OfflineGlobal.prototype.init = function () {
 
     // Currently the framework needs this 'adjustment' for offline apps:

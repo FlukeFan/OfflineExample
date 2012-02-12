@@ -12,6 +12,12 @@ else {
 // jquery stub
 function $(obj) { return obj; }
 
+// jquerymobile stub
+$.mobile = {};
+$.mobile.changePage = function (url) {
+    $.mobile.changedPage = url;
+}
+
 function elementStub() {
     this.appended = [];
     this.listviewEvents = [];

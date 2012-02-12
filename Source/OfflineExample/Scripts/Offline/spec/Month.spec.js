@@ -7,10 +7,10 @@
 describe("Month tests", function () {
 
     var view;
+    var params = { month: new Date("01 Jul 2001 02:03:04") };
 
     beforeEach(function () {
         view = {
-            params: { month: new Date("01 Jul 2001 02:03:04") },
             title: new elementStub(),
             list: new elementStub(),
         };
@@ -21,7 +21,7 @@ describe("Month tests", function () {
 
     it("should set the title on construction", function () {
 
-        var month = new MonthController(view);
+        new MonthController(view).load(params);
 
         expect(view.title.currentText).toBe("Jul");
     });
@@ -38,7 +38,7 @@ describe("Month tests", function () {
         spyOn(MonthController, "ROW_TEMPLATE");
         MonthController.ROW_TEMPLATE = "(@day)(@notes)";
 
-        var month = new MonthController(view);
+        var month = new MonthController(view).load(params);
         expect(view.list.currentText).toBe(""); // verify list was 'cleared' first
         expect(view.list.appended.length).toBe(3);
         expect(view.list.appended[0]).toBe("(2)(r1)");

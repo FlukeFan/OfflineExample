@@ -11,7 +11,7 @@ describe("Index tests", function () {
     beforeEach(function () {
         view = {
             list: new elementStub(),
-            testButton: new elementStub()
+            newButton: new elementStub()
         };
 
         var localStore = new localStorageStub();
@@ -31,7 +31,7 @@ describe("Index tests", function () {
         spyOn(indexController, "ROW_TEMPLATE");
         indexController.ROW_TEMPLATE = "(@monthDescription)(@count)";
 
-        var index = new indexController(view);
+        var index = new indexController(view).load();
         expect(view.list.currentText).toBe(""); // verify list was 'cleared' first
         expect(view.list.appended.length).toBe(4);
         expect(view.list.appended[0]).toBe("(Mar 2004)(2)");
@@ -52,6 +52,15 @@ describe("Index tests", function () {
 
         var expectedParams = JSON.stringify({ month: new Date("01 Mar 2004") });
         expect(result).toBe("(" + expectedParams + ")(Mar 2004)(5)");
+    });
+
+    it("should open Edit when New clicked", function () {
+        spyOn(OfflineGlobal, "getEditUrl").andCallFake(function () { return "EditUrl"; });
+
+        new indexController(view);
+        view.newButton.click();
+
+        expect($.mobile.changedPage).toBe("EditUrl");
     });
 
 });

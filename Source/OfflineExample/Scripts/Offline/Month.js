@@ -3,7 +3,7 @@
 
 var monthParams = null;
 
-$(document).delegate("#pageMonth", "pagebeforeshow", function () {
+$(document).delegate("#pageMonth", "pagebeforeshow", function (eventObject) {
 
     if (window.sessionStorage.getItem("params")) {
         monthParams = JSON.parse(window.sessionStorage.getItem("params"));
@@ -14,26 +14,35 @@ $(document).delegate("#pageMonth", "pagebeforeshow", function () {
     if (monthParams == null)
         return;
 
-    FooterController.Init($("#pageMonth"));
+    if (!eventObject.target.controller) {
 
-    new MonthController({
-        params: monthParams,
-        title: $("#monthTitle"),
-        list: $("#pageMonth #list")
-    });
+        eventObject.target.footerController = FooterController.Init($("#pageMonth"));
+
+        eventObject.target.controller =
+            new MonthController({
+                title: $("#monthTitle"),
+                list: $("#pageMonth #list")
+            });
+    }
+
+    eventObject.target.footerController.load();
+    eventObject.target.controller.load(monthParams);
 });
 
 MonthController.ROW_TEMPLATE = "<li data-params='@params'><a href='/OfflineExample/Offline/Edit'>@day - @notes</a></li>";
 
 function MonthController(view) {
-    var that = this;
     this.getView = function () { return view; }
+}
 
-    var params = this.getView().params;
+MonthController.prototype.load = function (params) {
+    var view = this.getView();
+    view.params = params;
 
     view.title.text(params.month.getMonthShortName());
-
     this.populate();
+
+    return this;
 }
 
 MonthController.prototype.populate = function () {

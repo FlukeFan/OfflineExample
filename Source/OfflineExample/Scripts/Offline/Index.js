@@ -1,16 +1,26 @@
-/// <reference path="..\jquery-1.7.1.min.js"/>
 /// <reference path="..\json2.js"/>
+/// <reference path="..\jquery-1.7.1.min.js"/>
+/// <reference path="..\jquery.mobile-1.0.1.min.js"/>
 /// <reference path="..\Util\DateUtil.js"/>
 /// <reference path="Footer.js"/>
+/// <reference path="OfflineGlobal.js"/>
 /// <reference path="StorageService.js"/>
 
-$(document).delegate("#pageAll", "pagebeforeshow", function () {
-    FooterController.Init($("#pageAll"));
+$(document).delegate("#pageAll", "pagebeforeshow", function (eventObject) {
 
-    new indexController({
-        list: $("#pageAll #list"),
-        testButton: $("#pageAll #tst")
-    });
+    if (!eventObject.target.controller) {
+
+        eventObject.target.footerController = FooterController.Init($("#pageAll"));
+
+        eventObject.target.controller =
+            new indexController({
+                list: $("#pageAll #list"),
+                newButton: $("#pageAll #new")
+            });
+    }
+
+    eventObject.target.footerController.load();
+    eventObject.target.controller.load();
 });
 
 indexController.ROW_TEMPLATE = "<li><a href='/OfflineExample/Offline/Month?params=@params'>@monthDescription<span class='ui-li-count'>@count</span></a></li>";
@@ -20,10 +30,13 @@ function indexController(view) {
     var that = this;
     this.getView = function () { return view; }
 
-    view.testButton.click(function () { that.testButtonClick(); });
-
-    this.populate();
+    view.newButton.click(function () { that.newButtonClick(); });
 }
+
+indexController.prototype.load = function () {
+    this.populate();
+    return this;
+};
 
 indexController.prototype.formatRow = function (month, count) {
     var params = JSON.stringify({ month: month.getTrimToMonth() });
@@ -53,28 +66,6 @@ indexController.prototype.populate = function () {
     view.list.listview("refresh");
 }
 
-indexController.prototype.testButtonClick = function () {
-
-    $(document).ajaxError(function (evt, jqXHR, ajaxSettings, thrownError) {
-        // do nothing
-    });
-
-    var t = {
-        Class: 'MyDto',
-        TestValue: 123
-    };
-
-    var encoded = JSON.stringify(t);
-
-    $.ajax({
-        url: "/OfflineExample/Online/Execute",
-        type: "POST",
-        dataType: "json",
-        data: encoded,
-        contentType: "application/json; charset=utf-8",
-        success: function (data, textStatus) {
-            alert(data.Result);
-        }
-    });
-
+indexController.prototype.newButtonClick = function () {
+    $.mobile.changePage(OfflineGlobal.getEditUrl());
 }

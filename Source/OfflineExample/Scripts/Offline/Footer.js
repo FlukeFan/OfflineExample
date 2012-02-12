@@ -4,15 +4,19 @@
 function FooterController(view) {
     var that = this;
     this.getView = function () { return view; }
-
-    OfflineGlobal.onIndicateOffline = function () { that.displayStatus(false); }
-    OfflineGlobal.onIndicateOnline = function () { that.displayStatus(true); }
 }
 
 FooterController.Init = function (footerElement) {
-    new FooterController({
+    return new FooterController({
         currentStatus: footerElement.find("#currentStatus")
     });
+}
+
+FooterController.prototype.load = function () {
+    var that = this;
+    OfflineGlobal.onIndicateOffline = function () { that.displayStatus(false); }
+    OfflineGlobal.onIndicateOnline = function () { that.displayStatus(true); }
+    return this;
 }
 
 FooterController.prototype.displayStatus = function (isOnline) {

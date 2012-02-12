@@ -15,7 +15,7 @@ describe("Footer tests", function () {
     });
 
     it("should show offline when offline raised", function () {
-        var index = new FooterController(view);
+        var index = new FooterController(view).load();
         OfflineGlobal.onIndicateOffline();
 
         expect(view.currentStatus.currentText).toBe("Offline");
@@ -23,7 +23,7 @@ describe("Footer tests", function () {
     });
 
     it("should show online when online raised", function () {
-        var index = new FooterController(view);
+        var index = new FooterController(view).load();
         OfflineGlobal.onIndicateOnline();
 
         expect(view.currentStatus.currentText).toBe("Online");
