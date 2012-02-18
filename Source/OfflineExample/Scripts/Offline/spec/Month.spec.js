@@ -10,9 +10,12 @@ describe("Month tests", function () {
     var params = { month: new Date("01 Jul 2001 02:03:04") };
 
     beforeEach(function () {
+        InitStubs();
+
         view = {
             title: new elementStub(),
             list: new elementStub(),
+            newButton: new elementStub()
         };
 
         var localStore = new localStorageStub();
@@ -49,4 +52,13 @@ describe("Month tests", function () {
         expect(view.list.listviewEvents[0]).toBe("refresh");
     });
 
+
+    it("should open Edit when New clicked", function () {
+        spyOn(OfflineGlobal, "getEditUrl").andCallFake(function () { return "EditUrl"; });
+
+        new MonthController(view);
+        view.newButton.click();
+
+        expect($.mobile.changedPage).toBe("EditUrl");
+    });
 });

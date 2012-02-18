@@ -21,7 +21,8 @@ $(document).delegate("#pageMonth", "pagebeforeshow", function (eventObject) {
         eventObject.target.controller =
             new MonthController({
                 title: $("#monthTitle"),
-                list: $("#pageMonth #list")
+                list: $("#pageMonth #list"),
+                newButton: $("#pageMonth #new")
             });
     }
 
@@ -32,7 +33,10 @@ $(document).delegate("#pageMonth", "pagebeforeshow", function (eventObject) {
 MonthController.ROW_TEMPLATE = "<li data-params='@params'><a href='/OfflineExample/Offline/Edit'>@day - @notes</a></li>";
 
 function MonthController(view) {
+    var that = this;
     this.getView = function () { return view; }
+
+    view.newButton.click(function () { that.newButtonClick(); });
 }
 
 MonthController.prototype.load = function (params) {
@@ -69,4 +73,8 @@ MonthController.prototype.formatRow = function (day, notes) {
             .replace("@notes", notes);
 
     return row;
+}
+
+MonthController.prototype.newButtonClick = function () {
+    $.mobile.changePage(OfflineGlobal.getEditUrl());
 }

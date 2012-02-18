@@ -9,6 +9,8 @@ describe("Index tests", function () {
     var view;
 
     beforeEach(function () {
+        InitStubs();
+
         view = {
             list: new elementStub(),
             newButton: new elementStub()

@@ -1,4 +1,9 @@
 
+// blank out any test responses
+function InitStubs() {
+    $.mobile.changedPage = null;
+}
+
 // window.document
 if (!document) {
     // we're running in Node.js, so we need a document object created
